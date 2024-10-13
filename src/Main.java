@@ -1,5 +1,3 @@
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Scanner;
 
 
@@ -24,34 +22,12 @@ public class Main {
         }
 
         // Создаем экземпляры классов
-        Count digitCounter = new DigitCount();
-        Count primeFactorCounter = new PrimeFactorCount();
+        ICount digitCounter = new DigitCount();
+        ICount primeFactorCounter = new PrimeFactorCount();
 
-        // Используем лямбда-выражение для переопределения метода count
-        Count digitCountLambda = (num) -> String.valueOf(Math.abs(num)).length();
-        Count primeFactorCountLambda = (num) -> {
-            Set<Integer> primeFactors = new HashSet<>();
-            int n = Math.abs(num); // Работаем с абсолютным значением
-
-            // Цикл для нахождения простых множителей
-            for (int i = 2; i <= Math.sqrt(n); i++) {
-                while (n % i == 0) {
-                    primeFactors.add(i); // Добавляем множитель в множество
-                    n /= i; // Делим число на множитель
-                }
-            }
-
-            // Если осталось число больше 1, оно простое
-            if (n > 1) {
-                primeFactors.add(n);
-            }
-
-            // Возвращаем количество различных простых множителей
-            return primeFactors.size();
-        };
 
         // Выводим результаты
-        System.out.println("Количество символов в десятичной записи числа: " + digitCountLambda.count(number));
-        System.out.println("Количество различных простых множителей числа: " + primeFactorCountLambda.count(number));
+        System.out.println("Количество символов в десятичной записи числа: " + digitCounter.count(number));
+        System.out.println("Количество различных простых множителей числа: " + primeFactorCounter.count(number));
     }
 }

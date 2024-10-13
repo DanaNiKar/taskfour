@@ -1,7 +1,9 @@
-public class DigitCount implements Count {
+//Класс для подсчета количества символов в десятичной записи числа
+public class DigitCount implements ICount {
+    private ICount digitCounter = (int num) -> String.valueOf(Math.abs(num)).length();
+
     @Override
     public int count(int number) {
-        // Преобразуем число в строку и считаем длину
-        return String.valueOf(Math.abs(number)).length(); // Используем Math.abs для учета отрицательных чисел
+        return digitCounter.count(number);
     }
 }
